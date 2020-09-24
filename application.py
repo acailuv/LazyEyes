@@ -17,7 +17,7 @@ def phrase_rank(text, count):
 
     return doc._.phrases[:count]
 
-def sentence_rank(text):
+def sentence_rank(text, count):
     # Removing Square Brackets and Extra Spaces
     article_text = re.sub(r'\[[0-9]*\]', ' ', text)
     article_text = re.sub(r'\s+', ' ', article_text)
@@ -51,7 +51,7 @@ def sentence_rank(text):
                     else:
                         sentence_scores[sent] += word_frequencies[word]
 
-    summary_sentences = heapq.nlargest(20, sentence_scores, key=sentence_scores.get)
+    summary_sentences = heapq.nlargest(count, sentence_scores, key=sentence_scores.get)
 
     summary = ' '.join(summary_sentences)
 
@@ -65,6 +65,7 @@ def index():
 def summary():
     original_text = request.form.get("original_text")
     keyword_count = int(request.form.get("keyword_count"))
+    main_point_count = int(request.form.get("main_point_count"))
     keywords = phrase_rank(original_text, keyword_count)
-    main_points = sentence_rank(original_text)
+    main_points = sentence_rank(original_text, main_point_count)
     return render_template("summary.html", original_text=original_text, keywords=keywords, main_points=main_points)

@@ -9,7 +9,10 @@ LazyEyes
     <textarea required type="text" name="original_text" rows="5" cols="50" placeholder="Type something to summarize..." spellcheck="true"></textarea>
     <br>
     <label for="keyword_count">Keyword Count:</label>
-    <input name="keyword_count" type="number" style="width: 4em;" min="0" max="99">
+    <input name="keyword_count" type="number" style="width: 4em;" min="0" max="99" required>
+    <br>
+    <label for="main_point_count">Main Point Count:</label>
+    <input name="main_point_count" type="number" style="width: 4em;" min="0" max="99" required>
     <br>
     <button type="submit">Summarize!</button>
 </form>
