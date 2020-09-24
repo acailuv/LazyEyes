@@ -1,0 +1,24 @@
+{% extends "template.html" %}
+
+{% block body %}
+<h1>Original Text</h1>
+{{ original_text }}
+<h1>Summary</h1>
+
+<b>Keywords:</b>
+<ol>
+    {% for item in keywords %}
+    <li>{{ item }}</li>
+    {% endfor %}
+</ol>
+
+<br>
+<b>Main Points:</b>
+<ol>
+    {% for item in main_points %}
+    <li>{{ item }}</li>
+    {% endfor %}
+</ol>
+<br>
+<a href="{{ url_for('index') }}">Go Back...</a>
+{% endblock %}
