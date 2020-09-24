@@ -7,7 +7,7 @@ import heapq
 
 app = Flask(__name__)
 
-def phrase_rank(text):
+def phrase_rank(text, count):
     nlp = spacy.load("en_core_web_sm")
 
     tr = pytextrank.TextRank()
@@ -15,7 +15,7 @@ def phrase_rank(text):
 
     doc = nlp(text)
 
-    return doc._.phrases
+    return doc._.phrases[:count]
 
 def sentence_rank(text):
     # Removing Square Brackets and Extra Spaces
@@ -64,6 +64,7 @@ def index():
 @app.route('/summary', methods=["POST"])
 def summary():
     original_text = request.form.get("original_text")
-    keywords = phrase_rank(original_text)[:5]
+    keyword_count = int(request.form.get("keyword_count"))
+    keywords = phrase_rank(original_text, keyword_count)
     main_points = sentence_rank(original_text)
     return render_template("summary.html", original_text=original_text, keywords=keywords, main_points=main_points)

@@ -8,6 +8,9 @@ LazyEyes
 <form action="{{ url_for('summary') }}" method="POST">
     <textarea required type="text" name="original_text" rows="5" cols="50" placeholder="Type something to summarize..." spellcheck="true"></textarea>
     <br>
+    <label for="keyword_count">Keyword Count:</label>
+    <input name="keyword_count" type="number" style="width: 4em;" min="0" max="99">
+    <br>
     <button type="submit">Summarize!</button>
 </form>
 {% endblock %}
