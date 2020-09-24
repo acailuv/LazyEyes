@@ -30,7 +30,7 @@ def sentence_rank(text, count):
     formatted_article_text = re.sub(r'\s+', ' ', formatted_article_text)
 
     sentence_list = nltk.sent_tokenize(article_text)
-    stopwords = nltk.corpus.stopwords.words('indonesian')
+    stopwords = nltk.corpus.stopwords.words('english')
 
     word_frequencies = {}
     for word in nltk.word_tokenize(formatted_article_text):
