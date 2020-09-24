@@ -14,8 +14,11 @@ def phrase_rank(text, count):
     nlp.add_pipe(tr.PipelineComponent, name="textrank", last=True)
 
     doc = nlp(text)
+    res = []
+    for phrase in doc._.phrases[:count]:
+        res.append(str(phrase).capitalize())
 
-    return doc._.phrases[:count]
+    return res
 
 def sentence_rank(text, count):
     # Removing Square Brackets and Extra Spaces
